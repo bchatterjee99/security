@@ -40,14 +40,11 @@ void expected_strcpy(char* dest, char* source)
 // array overflow
 void test2()
 {
-    int d1 = 0;
     char source[30] = "hello world extra string";
-    int *d2 = (int*)malloc(sizeof(int));
     char dest[10];
     // strcpy(dest, source);
     expected_strcpy(dest, source);
 
-    printf("d1 : %p   d2 : %p\n\n", &d1, d2);
 
     printf("dest:\n");
     for(int i=0; i<10; i++)
