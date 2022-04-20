@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 // %p ta virtual address dey:
@@ -24,13 +25,29 @@ void test1()
 }
 
 
+void expected_strcpy(char* dest, char* source)
+{
+    int i = 0;
+    while(1)
+    {
+	dest[i] = source[i];
+	if(source[i] == '\0') break;
+	i++;
+    }
+}
+
+
 // array overflow
 void test2()
 {
+    int d1 = 0;
     char source[30] = "hello world extra string";
-    // char c[20] = "adsfasdfsadfad";
+    int *d2 = (int*)malloc(sizeof(int));
     char dest[10];
-    strcpy(dest, source);
+    // strcpy(dest, source);
+    expected_strcpy(dest, source);
+
+    printf("d1 : %p   d2 : %p\n\n", &d1, d2);
 
     printf("dest:\n");
     for(int i=0; i<10; i++)
